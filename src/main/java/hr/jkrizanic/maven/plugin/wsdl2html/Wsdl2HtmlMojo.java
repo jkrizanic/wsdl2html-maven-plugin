@@ -113,13 +113,13 @@ public class Wsdl2HtmlMojo extends AbstractMojo {
      * @throws TransformerException
      */
     private void generateDocumentationForWsdl(String wsdlName) throws TransformerConfigurationException, TransformerFactoryConfigurationError, FileNotFoundException, TransformerException {
-        TransformerFactory tFactory = TransformerFactory.newInstance();
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
         //Sets a custom ResourceURIResolver
-        tFactory.setURIResolver(new ResourceURIResolver(this.wsdlDirectory));
+        transformerFactory.setURIResolver(new ResourceURIResolver(this.wsdlDirectory));
         //Load the XSL transformation file from the classpath
         InputStream xsl = this.getClass().getClassLoader().getResourceAsStream("wsdl-viewer.xsl");
         StreamSource xslSource = new StreamSource(xsl);
-        Transformer transformer = tFactory.newTransformer(xslSource);
+        Transformer transformer = transformerFactory.newTransformer(xslSource);
 
         File fileOutputDirectory = new File(this.outputDirectory);
         //If output directory not exist, create it.
