@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://ws.sandbox.jkrizanic.hr/hello/"
+    xmlns:tns="http://ws.sandbox.jkrizanic.hr/hello/"
+    elementFormDefault="qualified">
+   
+    
+    
+    <xsd:complexType name="getHello">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="getHelloResponse">
+        <xsd:sequence>
+            <xsd:element name="response" type="xsd:string"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="getHello" type="tns:getHello"></xsd:element>
+    <xsd:element name="getHelloResponse" type="tns:getHelloResponse"></xsd:element>
+</xsd:schema>

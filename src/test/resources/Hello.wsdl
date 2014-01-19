@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="Hello" targetNamespace="http://ws.sandbox.jkrizanic.hr/hello/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.sandbox.jkrizanic.hr/hello/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types>
+        <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://ws.sandbox.jkrizanic.hr/hello/" schemaLocation="Hello.xsd"/>
+        </xsd:schema>
+    </types>
+    
+    <message name="getHello">
+        <documentation>Input hello message!</documentation>
+        <part name="name" element="tns:getHello"/>
+    </message>
+    <message name="getHelloResponse">   
+        <documentation>Output hello message!</documentation>
+        <part name="helloMsg" element="tns:getHelloResponse"/>
+    </message>
+    <portType name="HelloService">       
+        <operation name="getHello">
+            <documentation>Implementation of getHello operation, greets the provided name.</documentation>
+            <input name="in" message="tns:getHello"/>
+            <output name="out" message="tns:getHelloResponse"/>
+        </operation>
+    </portType>
+    <binding name="HelloPortBinding" type="tns:HelloService">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="getHello">
+            <soap:operation/>
+            <input name="in">
+                <soap:body use="literal"/>
+            </input>
+            <output name="out">
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="HelloService">
+        <port name="HelloServicePort" binding="tns:HelloPortBinding">
+            <soap:address location="http://localhost:8080/HelloService"/>
+        </port>
+    </service>
+
+</definitions>
