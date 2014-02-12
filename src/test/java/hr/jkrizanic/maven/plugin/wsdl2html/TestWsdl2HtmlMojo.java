@@ -116,4 +116,22 @@ public class TestWsdl2HtmlMojo{
         Assert.assertTrue(new File("target/doc/Hello1.html").exists());
         Assert.assertTrue(new File("target/doc/Hello2.html").exists());
     }
+    
+   /**
+     * Tests the case when WSDL and XSD schema are in the same folder.
+     * @throws MojoExecutionException
+     * @throws MojoFailureException 
+     */
+    @Test
+    public void testWSDLAndXSDInSameFolder_ExternalTemplate() throws MojoExecutionException, MojoFailureException {
+        Wsdl2HtmlMojo mojo = new Wsdl2HtmlMojo();
+        mojo.setWsdlDirectory("src/test/resources");
+        mojo.setWsdlFileNames(new String[]{"Hello.wsdl"});
+        mojo.setTemplatePath("src/test/resources/wsdl-viewer-ext.xsl");
+
+        mojo.setOutputDirectory("target/doc");
+        mojo.execute();
+
+        Assert.assertTrue(new File("target/doc/Hello.html").exists());
+    }
 }

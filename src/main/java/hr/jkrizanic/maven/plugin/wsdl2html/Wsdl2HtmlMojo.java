@@ -29,9 +29,12 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -59,6 +62,9 @@ public class Wsdl2HtmlMojo extends AbstractMojo {
 
     @Parameter(property = "outputDirectory", defaultValue = "target/doc")
     private String outputDirectory;
+    
+    @Parameter(property = "templatePath")
+    private String templatePath;
 
     /**
      * The main execution method!
@@ -116,8 +122,8 @@ public class Wsdl2HtmlMojo extends AbstractMojo {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         //Sets a custom ResourceURIResolver
         transformerFactory.setURIResolver(new ResourceURIResolver(this.wsdlDirectory));
-        //Load the XSL transformation file from the classpath
-        InputStream xsl = this.getClass().getClassLoader().getResourceAsStream("wsdl-viewer.xsl");
+        //Load the XSL transformation file from the classpath or from custom provided location
+        InputStream xsl = getTransformerStream();
         StreamSource xslSource = new StreamSource(xsl);
         Transformer transformer = transformerFactory.newTransformer(xslSource);
 
@@ -134,6 +140,20 @@ public class Wsdl2HtmlMojo extends AbstractMojo {
         transformer.transform(xmlSource, new StreamResult(
                 new FileOutputStream(fileOutputDirectory.getPath() + "/" + docName)));
     }
+    
+    private InputStream getTransformerStream(){
+        try {
+            if(this.templatePath == null){
+                return this.getClass().getClassLoader().getResourceAsStream("wsdl-viewer.xsl");
+            }
+            return new FileInputStream(this.templatePath);
+        } catch (FileNotFoundException ex) {
+            getLog().error("External defined transformation template file not found! Returning default one!");
+            return this.getClass().getClassLoader().getResourceAsStream("wsdl-viewer.xsl");
+        }
+    }
+    
+    
 
     protected void setWsdlFileNames(String[] wsdlFileNames) {
         this.wsdlFileNames = wsdlFileNames;
@@ -147,4 +167,7 @@ public class Wsdl2HtmlMojo extends AbstractMojo {
         this.wsdlDirectory = wsdlDirectory;
     }
 
+    public void setTemplatePath(String templatePath) {
+        this.templatePath = templatePath;
+    }    
 }

@@ -14,6 +14,9 @@ http://tomi.vanek.sk/xml/wsdl-viewer.xsl !
 
 Change log:
 
+v0.0.2 (Feb 12, 2014):
+* provides option of using external XSL file
+
 v0.0.1 (Jan 19, 2014):
 * initial version of the plugin
 
