@@ -141,6 +141,11 @@ public class Wsdl2HtmlMojo extends AbstractMojo {
                 new FileOutputStream(fileOutputDirectory.getPath() + "/" + docName)));
     }
     
+    /**
+     * Returns transformer file input stream depending on templatePath parameter.
+     * If not defined, returns default embedded transformer file.
+     * @return Returns input stream of transformer file.
+     */
     private InputStream getTransformerStream(){
         try {
             if(this.templatePath == null){
