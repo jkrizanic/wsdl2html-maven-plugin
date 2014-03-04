@@ -119,7 +119,7 @@ public class Wsdl2HtmlMojo extends AbstractMojo {
      * @throws TransformerException
      */
     private void generateDocumentationForWsdl(String wsdlName) throws TransformerConfigurationException, TransformerFactoryConfigurationError, FileNotFoundException, TransformerException {
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        TransformerFactory transformerFactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl",null);
         //Sets a custom ResourceURIResolver
         transformerFactory.setURIResolver(new ResourceURIResolver(this.wsdlDirectory));
         //Load the XSL transformation file from the classpath or from custom provided location

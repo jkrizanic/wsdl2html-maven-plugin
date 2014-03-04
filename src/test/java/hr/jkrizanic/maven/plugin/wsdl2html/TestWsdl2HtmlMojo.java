@@ -127,7 +127,7 @@ public class TestWsdl2HtmlMojo{
         Wsdl2HtmlMojo mojo = new Wsdl2HtmlMojo();
         mojo.setWsdlDirectory("src/test/resources");
         mojo.setWsdlFileNames(new String[]{"Hello.wsdl"});
-        mojo.setTemplatePath("src/test/resources/wsdl-viewer-ext.xsl");
+        mojo.setTemplatePath("src/test/resources/wsdl-viewer.xsl");
 
         mojo.setOutputDirectory("target/doc");
         mojo.execute();
