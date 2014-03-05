@@ -20,11 +20,11 @@
             <artifactId>maven-plugin-api</artifactId>
             <version>3.1.1</version>
         </dependency> 
-       <dependency>
+        <dependency>
             <groupId>net.sf.saxon</groupId>
             <artifactId>Saxon-HE</artifactId>
             <version>9.5.1-3</version>
-    </dependency>
+        </dependency>
             
             
         <dependency>
@@ -59,34 +59,34 @@
             <version>2.4</version>
         </dependency>
    
-        </dependencies>
+    </dependencies>
     
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-plugin-plugin</artifactId>
-                    <version>3.2</version>
-                    <configuration>
-                        <goalPrefix>mysql-jdbc-compliance</goalPrefix>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>default-descriptor</id>
-                            <goals>
-                                <goal>descriptor</goal>
-                            </goals>
-                            <phase>process-classes</phase>
-                        </execution>
-                        <execution>
-                            <id>help-descriptor</id>
-                            <goals>
-                                <goal>helpmojo</goal>
-                            </goals>
-                            <phase>process-classes</phase>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <goalPrefix>mysql-jdbc-compliance</goalPrefix>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-descriptor</id>
+                        <goals>
+                            <goal>descriptor</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                    </execution>
+                    <execution>
+                        <id>help-descriptor</id>
+                        <goals>
+                            <goal>helpmojo</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
