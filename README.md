@@ -14,6 +14,9 @@ http://tomi.vanek.sk/xml/wsdl-viewer.xsl !
 
 Change log:
 
+v0.0.3 (Mar 05, 2014):
+* uses SAXON for transformation
+
 v0.0.2 (Feb 12, 2014):
 * provides option of using external XSL file
 
