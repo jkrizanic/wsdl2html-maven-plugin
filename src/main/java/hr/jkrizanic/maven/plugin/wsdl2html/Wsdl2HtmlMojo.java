@@ -130,7 +130,7 @@ public class Wsdl2HtmlMojo extends AbstractMojo {
         File fileOutputDirectory = new File(this.outputDirectory);
         //If output directory not exist, create it.
         if (!fileOutputDirectory.exists()) {
-            fileOutputDirectory.mkdir();
+            fileOutputDirectory.mkdirs();
         }
 
         StreamSource xmlSource = new StreamSource(this.wsdlDirectory + "/" + wsdlName);
